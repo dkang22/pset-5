@@ -26,7 +26,20 @@ window.onload = function() {
  */
 
 const sayHello = function() {
-    // write your exercise 1 code here
+    let canvas = document.getElementById('student-canvas-1');
+    let context = canvas.getContext('2d');
+    let message = prompt("Message: ");
+    let messageLength = message.length;
+
+    while (messageLength > 50) {
+        alert("Your message is too long. Keep it under 50 characters.");
+        message = prompt("Message: ");
+        messageLength = message.length;
+    }
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.font = "48px sans-serif";
+    context.strokeText(message, 30, 70, 994);
 };
 
 /*
