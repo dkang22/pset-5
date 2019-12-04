@@ -28,6 +28,9 @@ window.onload = function() {
 const sayHello = function() {
     let canvas = document.getElementById('student-canvas-1');
     let context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
     let message = prompt("Message: ");
     let messageLength = message.length;
 
@@ -37,7 +40,6 @@ const sayHello = function() {
         messageLength = message.length;
     }
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
     context.font = "48px sans-serif";
     context.strokeText(message, 30, 70, 994);
 };
