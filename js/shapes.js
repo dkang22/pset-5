@@ -143,6 +143,7 @@ const drawColoredRectangle = function() {
 
 const drawTriangle = function() {
     // write your exercise 4 code here
+    //user input, math.min (height), math.max (hypotenuse)
 };
 
 /*
