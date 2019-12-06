@@ -49,7 +49,36 @@ const sayHello = function() {
  */
 
 const drawRectangle = function() {
-    // write your exercise 2 code here
+    let canvas = document.getElementById('student-canvas-2');
+    let context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    let width = Number(prompt("Width: "));
+    let height = Number(prompt("Height: "));
+    let xcoordinate = Number(prompt("X: "));
+    let ycoordinate = Number(prompt("Y: "));
+
+    while (width < 1 || width > 1024 || height < 1 || height > 512 || xcoordinate < 1 || xcoordinate > 1024 || ycoordinate < 1 || ycoordinate > 512) {
+        if (width < 1 || width > 1024) {
+            alert("Your width must be between 1 and 1024.");
+        } else if (height < 1 || height > 512) {
+            alert("Your height must be between 1 and 512.");
+        } else if (xcoordinate < 1 || xcoordinate > 1024) {
+            alert("Your x-coordinate must be between 1 and 1024.");
+        } else if (ycoordinate < 1 || ycoordinate > 512) {
+            alert("Your y-coordinate must be between 1 and 512.");
+        } else {
+            //intentially empty
+        }
+
+        width = Number(prompt("Width: "));
+        height = Number(prompt("Height: "));
+        xcoordinate = Number(prompt("X: "));
+        ycoordinate = Number(prompt("Y: "));
+    }
+
+    context.fillRect(xcoordinate, ycoordinate, width, height);
 };
 
 /*
@@ -57,7 +86,50 @@ const drawRectangle = function() {
  */
 
 const drawColoredRectangle = function() {
-    // write your exercise 3 code here
+    let canvas = document.getElementById('student-canvas-2');
+    let context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    let color = toLowerCase(prompt("Color: "));
+
+    while (color === "black" || color === "blue" || color === "green" || color === "orange" || color === "purple" || color === "red" || color === "yellow") {
+        alert(color + " is not a supported color.");
+        color = toLowerCase(prompt("Color: "));
+    }
+
+    switch (color) {
+        case "black":
+            context.fillStyle = 'black';
+            context.fillRect(10, 10, 100, 50);
+            break;
+        case "blue":
+            context.fillStyle = 'blue';
+            context.fillRect(10, 10, 100, 50);
+            break;
+        case "green":
+            context.fillStyle = 'green';
+            context.fillRect(10, 10, 100, 50);
+            break;
+        case "orange":
+            context.fillStyle = 'orange';
+            context.fillRect(10, 10, 100, 50);
+            break;
+        case "purple":
+            context.fillStyle = 'purple';
+            context.fillRect(10, 10, 100, 50);
+            break;
+        case "red":
+            context.fillStyle = 'red';
+            context.fillRect(10, 10, 100, 50);
+            break;
+        case "yellow":
+            context.fillStyle = 'yellow';
+            context.fillRect(10, 10, 100, 50);
+            break;
+        default:
+            alert(color + " is not a supported color.");
+    }
 };
 
 /*
