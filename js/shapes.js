@@ -66,7 +66,7 @@ const drawRectangle = function() {
 
     while (width < 1 || width > 1024 || height < 1 || height > 512 || xcoordinate < 1 || xcoordinate > 1024 || ycoordinate < 1 || ycoordinate > 512 || isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate) || ycoordinate == null) {
 
-        if (ycoordinate == null) {
+        if (ycoordinate === null) {
             break;
         }
         if (isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate)){
@@ -115,10 +115,10 @@ const drawColoredRectangle = function() {
     do {
         var color = prompt("Color: ");
 
-        if (color == null) {
+        if (color === null) {
             break;
         }
-        if (color == "") {
+        if (color === "") {
             alert(" is not a supported color.");
             color = prompt("Color: ");
         }
@@ -181,7 +181,7 @@ const drawTriangle = function() {
         var side2 = prompt("Side 2: ");
         var side3 = prompt("Side 3: ");
 
-        if (side3 == null) {
+        if (side3 === null) {
             break;
         }
 
@@ -201,6 +201,11 @@ const drawTriangle = function() {
             alert("Your triangle won't fit on the canvas.")
         }
 
+    } while (isNaN(side1) || isNaN(side2) || isNaN(side3) || (Math.hypot(side1, side2) != side3 && Math.hypot(side2, side3) != side1 && Math.hypot(side1, side3) != side2) || height > 512 || base > 1024);
+
+    if (side3 === null) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
         height += 25;
         base += 25;
 
@@ -210,7 +215,7 @@ const drawTriangle = function() {
         context.lineTo(base, height);
         context.lineTo(25, 25);
         context.stroke();
-    } while (isNaN(side1) || isNaN(side2) || isNaN(side3) || (Math.hypot(side1, side2) != side3 && Math.hypot(side2, side3) != side1 && Math.hypot(side1, side3) != side2) || height > 512 || base > 1024);
+    }
 };
 /*
  * Exercise 5.
@@ -225,7 +230,7 @@ const drawFace = function() {
     do {
         var headRadius = prompt("Radius: ");
 
-        if (headRadius == null) {
+        if (headRadius === null) {
             break;
         }
 
@@ -240,25 +245,29 @@ const drawFace = function() {
         }
     } while (headRadius > 256 || headRadius < 32 || isNaN(headRadius));
 
-    var eyesRadius = 0.15 * headRadius;
-    var mouthRadius = 0.7 * headRadius;
+    if (headRadius === null) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+        var eyesRadius = 0.15 * headRadius;
+        var mouthRadius = 0.7 * headRadius;
 
-    context.beginPath();
-    context.arc(512, 256, headRadius, 0, 2 * Math.PI);
-    context.stroke();
-    context.closePath();
-    context.beginPath();
-    context.arc(512 - (headRadius * 0.4), 256 - (headRadius * 0.4), eyesRadius, 0, 2 * Math.PI);
-    context.stroke();
-    context.closePath();
-    context.beginPath();
-    context.arc(512 + (headRadius * 0.4), 256 - (headRadius * 0.4), eyesRadius, 0, 2 * Math.PI);
-    context.stroke();
-    context.closePath();
-    context.beginPath();
-    context.arc(512, 256, mouthRadius, 0, Math.PI);
-    context.stroke();
-    context.closePath();
+        context.beginPath();
+        context.arc(512, 256, headRadius, 0, 2 * Math.PI);
+        context.stroke();
+        context.closePath();
+        context.beginPath();
+        context.arc(512 - (headRadius * 0.4), 256 - (headRadius * 0.4), eyesRadius, 0, 2 * Math.PI);
+        context.stroke();
+        context.closePath();
+        context.beginPath();
+        context.arc(512 + (headRadius * 0.4), 256 - (headRadius * 0.4), eyesRadius, 0, 2 * Math.PI);
+        context.stroke();
+        context.closePath();
+        context.beginPath();
+        context.arc(512, 256, mouthRadius, 0, Math.PI);
+        context.stroke();
+        context.closePath();
+    }
 };
 
 /*
