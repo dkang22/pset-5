@@ -253,5 +253,43 @@ const drawFace = function() {
  */
 
 const drawPyramid = function() {
-    // write your exercise 5 code here
+    let canvas = document.getElementById('student-canvas-6');
+    let context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    do {
+        var blockSize = prompt("Side: ");
+
+        if (blockSize < 1) {
+            alert("Your block size must be at least 1.");
+        } else if (blockSize > 100) {
+            alert("Your pyramid won't fit on the canvas.");
+        } else if (isNaN(blockSize)) {
+            alert("Your block size is not a number.");
+        } else {
+            //intentially empty
+        }
+    } while (blockSize < 1 || blockSize > 100 || isNaN(blockSize));
+
+    let xOrigin = 10;
+    let yOrigin = 502 - blockSize;
+
+    context.strokeRect(xOrigin, yOrigin, blockSize, blockSize);
+    context.stroke();
+    //xOrigin = xOrigin + blockSize;
+    context.strokeRect(xOrigin, yOrigin - blockSize, blockSize, blockSize);
+    context.stroke();
+    xOrigin = xOrigin + blockSize;
+
+
+/*
+    for (let x = 5; x < 0; x--) {
+
+        context.strokeRect(xOrigin, yOrigin - blockSize, blockSize, blockSize);
+        context.stroke();
+        xOrigin += blockSize;
+    }
+*/
+
 };
