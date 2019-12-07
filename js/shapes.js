@@ -283,7 +283,9 @@ const drawPyramid = function() {
     do {
         var blockSize = prompt("Side: ");
 
-        if (blockSize < 1) {
+        if (blockSize === null) {
+            break;
+        } else if (blockSize < 1) {
             alert("Your block size must be at least 1.");
         } else if (blockSize > 100) {
             alert("Your pyramid won't fit on the canvas.");
@@ -294,24 +296,61 @@ const drawPyramid = function() {
         }
     } while (blockSize < 1 || blockSize > 100 || isNaN(blockSize));
 
-    let xOrigin = 10;
-    let yOrigin = 502 - blockSize;
+    if (blockSize === null) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+        blockSize = Number(blockSize);
 
-    context.strokeRect(xOrigin, yOrigin, blockSize, blockSize);
-    context.stroke();
-    //xOrigin = xOrigin + blockSize;
-    context.strokeRect(xOrigin, yOrigin - blockSize, blockSize, blockSize);
-    context.stroke();
-    xOrigin = xOrigin + blockSize;
+        //first level of Pyramid
 
+        let xOrigin = 10;
+        let yOrigin = 502 - blockSize;
 
-/*
-    for (let x = 5; x < 0; x--) {
+        for (let x = 5; x > 0; x--) {
+            context.strokeRect(xOrigin, yOrigin, blockSize, blockSize);
+            context.stroke();
+            xOrigin += blockSize;
+        }
 
-        context.strokeRect(xOrigin, yOrigin - blockSize, blockSize, blockSize);
+        //second level of Pyramid
+
+        xOrigin = 10 + (0.5 * blockSize);
+        yOrigin = 502 - (2 * blockSize);
+
+        for (let y = 4; y > 0; y--) {
+            context.strokeRect(xOrigin, yOrigin, blockSize, blockSize);
+            context.stroke();
+            xOrigin += blockSize;
+        }
+
+        //third level of Pyramid
+
+        xOrigin = 10 + blockSize;
+        yOrigin = 502 - (3 * blockSize);
+
+        for (let z = 3; z > 0; z--) {
+            context.strokeRect(xOrigin, yOrigin, blockSize, blockSize);
+            context.stroke();
+            xOrigin += blockSize;
+        }
+
+        //fourth level of Pyramid
+
+        xOrigin = 10 + (1.5 * blockSize);
+        yOrigin = 502 - (4 * blockSize);
+
+        for (let a = 2; a > 0; a--) {
+            context.strokeRect(xOrigin, yOrigin, blockSize, blockSize);
+            context.stroke();
+            xOrigin += blockSize;
+        }
+
+        //fifth (top) level of pyramid
+
+        xOrigin = 10 + (2 * blockSize);
+        yOrigin = 502 - (5 * blockSize);
+
+        context.strokeRect(xOrigin, yOrigin, blockSize, blockSize);
         context.stroke();
-        xOrigin += blockSize;
     }
-*/
-
 };
