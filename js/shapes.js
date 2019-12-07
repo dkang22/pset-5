@@ -59,13 +59,16 @@ const drawRectangle = function() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    let width = Number(prompt("Width: "));
-    let height = Number(prompt("Height: "));
-    let xcoordinate = Number(prompt("X: "));
-    let ycoordinate = Number(prompt("Y: "));
+    let width = prompt("Width: ");
+    let height = prompt("Height: ");
+    let xcoordinate = prompt("X: ");
+    let ycoordinate = prompt("Y: ");
 
-    while (width < 1 || width > 1024 || height < 1 || height > 512 || xcoordinate < 1 || xcoordinate > 1024 || ycoordinate < 1 || ycoordinate > 512) {
-        if (width < 1 || width > 1024) {
+    while (width < 1 || width > 1024 || height < 1 || height > 512 || xcoordinate < 1 || xcoordinate > 1024 || ycoordinate < 1 || ycoordinate > 512 || isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate)) {
+
+        if (isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate)){
+            alert("One of your values is not a number.");
+        } else if (width < 1 || width > 1024) {
             alert("Your width must be between 1 and 1024.");
         } else if (height < 1 || height > 512) {
             alert("Your height must be between 1 and 512.");
@@ -77,13 +80,23 @@ const drawRectangle = function() {
             //intentially empty
         }
 
-        width = Number(prompt("Width: "));
-        height = Number(prompt("Height: "));
-        xcoordinate = Number(prompt("X: "));
-        ycoordinate = Number(prompt("Y: "));
+        width = prompt("Width: ");
+        height = prompt("Height: ");
+        xcoordinate = prompt("X: ");
+        ycoordinate = prompt("Y: ");
     }
 
-    context.fillRect(xcoordinate, ycoordinate, width, height);
+    if ((width + xcoordinate > 1024) || (height + ycoordinate > 512)) {
+        alert("Your rectangle won't fit on the canvas.");
+
+        width = prompt("Width: ");
+        height = prompt("Height: ");
+        xcoordinate = prompt("X: ");
+        ycoordinate = prompt("Y: ");
+    }
+
+    context.strokeRect(xcoordinate, ycoordinate, width, height);
+    context.stroke();
 };
 
 /*
@@ -91,50 +104,60 @@ const drawRectangle = function() {
  */
 
 const drawColoredRectangle = function() {
-    let canvas = document.getElementById('student-canvas-2');
+    let canvas = document.getElementById('student-canvas-3');
     let context = canvas.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    let color = toLowerCase(prompt("Color: "));
+    do {
+        var color = prompt("Color: ");
 
-    while (color === "black" || color === "blue" || color === "green" || color === "orange" || color === "purple" || color === "red" || color === "yellow") {
-        alert(color + " is not a supported color.");
-        color = toLowerCase(prompt("Color: "));
-    }
+        if (color == null) {
+            alert(" is not a supported color.");
+            color = prompt("Color: ");
+        }
 
-    switch (color) {
+        color = String(color);
+        var colorCaseUnsensitive = color.toLowerCase();
+
+        if (colorCaseUnsensitive !== "black" && colorCaseUnsensitive !== "blue" && colorCaseUnsensitive !== "green" && colorCaseUnsensitive !== "orange" && colorCaseUnsensitive !== "purple" && colorCaseUnsensitive !== "red" && colorCaseUnsensitive !== "yellow" ) {
+            alert(color + " is not a supported color.");
+        }
+    } while (colorCaseUnsensitive !== "black" && colorCaseUnsensitive !== "blue" && colorCaseUnsensitive !== "green" && colorCaseUnsensitive !== "orange" && colorCaseUnsensitive !== "purple" && colorCaseUnsensitive !== "red" && colorCaseUnsensitive !== "yellow");
+
+    switch (colorCaseUnsensitive) {
         case "black":
-            context.fillStyle = 'black';
+            context.fillStyle = "#000000";
             context.fillRect(10, 10, 100, 50);
             break;
         case "blue":
-            context.fillStyle = 'blue';
+            context.fillStyle = "#0000FF";
             context.fillRect(10, 10, 100, 50);
             break;
         case "green":
-            context.fillStyle = 'green';
+            context.fillStyle = "#008000";
             context.fillRect(10, 10, 100, 50);
             break;
         case "orange":
-            context.fillStyle = 'orange';
+            context.fillStyle = "#FFA500";
             context.fillRect(10, 10, 100, 50);
             break;
         case "purple":
-            context.fillStyle = 'purple';
+            context.fillStyle = "#800080";
             context.fillRect(10, 10, 100, 50);
             break;
         case "red":
-            context.fillStyle = 'red';
+            context.fillStyle = "#FF0000";
             context.fillRect(10, 10, 100, 50);
             break;
         case "yellow":
-            context.fillStyle = 'yellow';
+            context.fillStyle = "#FFFF00";
             context.fillRect(10, 10, 100, 50);
             break;
         default:
-            alert(color + " is not a supported color.");
+            break;
     }
+
 };
 
 /*
@@ -142,16 +165,87 @@ const drawColoredRectangle = function() {
  */
 
 const drawTriangle = function() {
-    // write your exercise 4 code here
-    //user input, math.min (height), math.max (hypotenuse)
-};
+    let canvas = document.getElementById('student-canvas-4');
+    let context = canvas.getContext('2d');
 
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    do {
+        var side1 = prompt("Side 1: ");
+        var side2 = prompt("Side 2: ");
+        var side3 = prompt("Side 3: ");
+
+
+        if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+            alert("One of your sides is not a number.");
+        } else if (Math.hypot(side1, side2) != side3 && Math.hypot(side2, side3) != side1 && Math.hypot(side1, side3) != side2) {
+            alert("That's not a valid right triangle.");
+        } else {
+            //intentially empty
+        }
+
+        var height = Math.min(side1, side2, side3);
+        var hypotenuse = Math.max(side1, side2, side3);
+        var base = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(height, 2));
+
+        if (height > 487 || base > 999) {
+            alert("Your triangle won't fit on the canvas.")
+        }
+
+        height += 25;
+        base += 25;
+
+        context.beginPath();
+        context.moveTo(25, 25);
+        context.lineTo(25, height);
+        context.lineTo(base, height);
+        context.lineTo(25, 25);
+        context.stroke();
+    } while (isNaN(side1) || isNaN(side2) || isNaN(side3) || (Math.hypot(side1, side2) != side3 && Math.hypot(side2, side3) != side1 && Math.hypot(side1, side3) != side2) || height > 512 || base > 1024);
+};
 /*
  * Exercise 5.
  */
 
 const drawFace = function() {
-    // write your exercise 4 code here
+    let canvas = document.getElementById('student-canvas-5');
+    let context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    do {
+        var headRadius = prompt("Radius: ");
+
+        if (isNaN(headRadius)) {
+            alert("Your radius is not a number.");
+        } else if (headRadius == null) {
+            break;
+        } else if (headRadius < 32) {
+            alert("Your radius must be at least 32.");
+        } else if (headRadius > 256) {
+            alert("Your smiley face won't fit on the canvas.");
+        }
+    } while (headRadius > 256 || headRadius < 32 || isNaN(headRadius));
+
+    var eyesRadius = 0.15 * headRadius;
+    var mouthRadius = 0.7 * headRadius;
+
+    context.beginPath();
+    context.arc(512, 256, headRadius, 0, 2 * Math.PI);
+    context.stroke();
+    context.closePath();
+    context.beginPath();
+    context.arc(512 - (headRadius * 0.4), 256 - (headRadius * 0.4), eyesRadius, 0, 2 * Math.PI);
+    context.stroke();
+    context.closePath();
+    context.beginPath();
+    context.arc(512 + (headRadius * 0.4), 256 - (headRadius * 0.4), eyesRadius, 0, 2 * Math.PI);
+    context.stroke();
+    context.closePath();
+    context.beginPath();
+    context.arc(512, 256, mouthRadius, 0, Math.PI);
+    context.stroke();
+    context.closePath();
 };
 
 /*
