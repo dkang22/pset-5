@@ -64,8 +64,11 @@ const drawRectangle = function() {
     let xcoordinate = prompt("X: ");
     let ycoordinate = prompt("Y: ");
 
-    while (width < 1 || width > 1024 || height < 1 || height > 512 || xcoordinate < 1 || xcoordinate > 1024 || ycoordinate < 1 || ycoordinate > 512 || isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate)) {
+    while (width < 1 || width > 1024 || height < 1 || height > 512 || xcoordinate < 1 || xcoordinate > 1024 || ycoordinate < 1 || ycoordinate > 512 || isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate) || ycoordinate == null) {
 
+        if (ycoordinate == null) {
+            break;
+        }
         if (isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate)){
             alert("One of your values is not a number.");
         } else if (width < 1 || width > 1024) {
@@ -113,6 +116,9 @@ const drawColoredRectangle = function() {
         var color = prompt("Color: ");
 
         if (color == null) {
+            break;
+        }
+        if (color == "") {
             alert(" is not a supported color.");
             color = prompt("Color: ");
         }
@@ -175,6 +181,9 @@ const drawTriangle = function() {
         var side2 = prompt("Side 2: ");
         var side3 = prompt("Side 3: ");
 
+        if (side3 == null) {
+            break;
+        }
 
         if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
             alert("One of your sides is not a number.");
@@ -216,14 +225,18 @@ const drawFace = function() {
     do {
         var headRadius = prompt("Radius: ");
 
+        if (headRadius == null) {
+            break;
+        }
+
         if (isNaN(headRadius)) {
             alert("Your radius is not a number.");
-        } else if (headRadius == null) {
-            break;
         } else if (headRadius < 32) {
             alert("Your radius must be at least 32.");
         } else if (headRadius > 256) {
             alert("Your smiley face won't fit on the canvas.");
+        } else {
+            //intentially empty
         }
     } while (headRadius > 256 || headRadius < 32 || isNaN(headRadius));
 
