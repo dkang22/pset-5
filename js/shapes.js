@@ -93,16 +93,15 @@ const drawColoredRectangle = function() {
 
         if (color === "") {
             alert(" is not a supported color.");
-            color = prompt("Color: ");
         }
 
-        color = String(color);
-        var colorCaseUnsensitive = color.toLowerCase();
+        var colorString = String(color);
+        var colorCaseUnsensitive = colorString.toLowerCase();
 
         if (colorCaseUnsensitive !== "black" && colorCaseUnsensitive !== "blue" && colorCaseUnsensitive !== "green" && colorCaseUnsensitive !== "orange" && colorCaseUnsensitive !== "purple" && colorCaseUnsensitive !== "red" && colorCaseUnsensitive !== "yellow" ) {
-            alert(color + " is not a supported color.");
+            alert(colorCaseUnsensitive + " is not a supported color.");
         }
-    } while (colorCaseUnsensitive !== "black" && colorCaseUnsensitive !== "blue" && colorCaseUnsensitive !== "green" && colorCaseUnsensitive !== "orange" && colorCaseUnsensitive !== "purple" && colorCaseUnsensitive !== "red" && colorCaseUnsensitive !== "yellow");
+    } while (colorCaseUnsensitive !== "black" && colorCaseUnsensitive !== "blue" && colorCaseUnsensitive !== "green" && colorCaseUnsensitive !== "orange" && colorCaseUnsensitive !== "purple" && colorCaseUnsensitive !== "red" && colorCaseUnsensitive !== "yellow" && color !== null);
 
     switch (colorCaseUnsensitive) {
         case "black":
