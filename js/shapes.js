@@ -38,16 +38,21 @@ const drawRectangle = function() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    let width = prompt("Width: ");
-    let height = prompt("Height: ");
-    let xcoordinate = prompt("X: ");
-    let ycoordinate = prompt("Y: ");
-
-    while (width < 1 || width > 1024 || height < 1 || height > 512 || xcoordinate < 1 || xcoordinate > 1024 || ycoordinate < 1 || ycoordinate > 512 || isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate) || ycoordinate == null) {
+    do {
+        var width = prompt("Width: ");
+        var height = prompt("Height: ");
+        var xcoordinate = prompt("X: ");
+        var ycoordinate = prompt("Y: ");
 
         if (ycoordinate === null) {
             break;
         }
+
+        width = Number(width);
+        height = Number(height);
+        xcoordinate = Number(xcoordinate);
+        ycoordinate = Number(ycoordinate);
+        
         if (isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate)){
             alert("One of your values is not a number.");
         } else if (width < 1 || width > 1024) {
@@ -58,27 +63,19 @@ const drawRectangle = function() {
             alert("Your x-coordinate must be between 1 and 1024.");
         } else if (ycoordinate < 1 || ycoordinate > 512) {
             alert("Your y-coordinate must be between 1 and 512.");
-        } else {
+        } else if (((width + xcoordinate) > 1024) || ((height + ycoordinate) > 512)) {
+            alert("Your rectangle won't fit on the canvas.");
+        }  else {
             //intentially empty
         }
+    } while (width < 1 || width > 1024 || height < 1 || height > 512 || xcoordinate < 1 || xcoordinate > 1024 || ycoordinate < 1 || ycoordinate > 512 || isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate) || (width + xcoordinate > 1024) || (height + ycoordinate > 512));
 
-        width = prompt("Width: ");
-        height = prompt("Height: ");
-        xcoordinate = prompt("X: ");
-        ycoordinate = prompt("Y: ");
+    if (ycoordinate === null) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+        context.strokeRect(xcoordinate, ycoordinate, width, height);
+        context.stroke();
     }
-
-    if ((width + xcoordinate > 1024) || (height + ycoordinate > 512)) {
-        alert("Your rectangle won't fit on the canvas.");
-
-        width = prompt("Width: ");
-        height = prompt("Height: ");
-        xcoordinate = prompt("X: ");
-        ycoordinate = prompt("Y: ");
-    }
-
-    context.strokeRect(xcoordinate, ycoordinate, width, height);
-    context.stroke();
 };
 
 const drawColoredRectangle = function() {
