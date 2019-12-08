@@ -52,7 +52,7 @@ const drawRectangle = function() {
         height = Number(height);
         xcoordinate = Number(xcoordinate);
         ycoordinate = Number(ycoordinate);
-        
+
         if (isNaN(width) || isNaN(height) || isNaN(xcoordinate) || isNaN(ycoordinate)){
             alert("One of your values is not a number.");
         } else if (width < 1 || width > 1024) {
@@ -90,6 +90,7 @@ const drawColoredRectangle = function() {
         if (color === null) {
             break;
         }
+
         if (color === "") {
             alert(" is not a supported color.");
             color = prompt("Color: ");
@@ -131,6 +132,9 @@ const drawColoredRectangle = function() {
         case "yellow":
             context.fillStyle = "#FFFF00";
             context.fillRect(10, 10, 100, 50);
+            break;
+        case null:
+            context.clearRect(0, 0, canvas.width, canvas.height);
             break;
         default:
             break;
