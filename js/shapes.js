@@ -265,7 +265,7 @@ const drawPyramid = function() {
     } else {
         blockSize = Number(blockSize);
 
-        //first level of Pyramid
+        //first level (base) of the Pyramid
 
         let xOrigin = 10;
         let yOrigin = 502 - blockSize;
@@ -276,7 +276,7 @@ const drawPyramid = function() {
             xOrigin += blockSize;
         }
 
-        //second level of Pyramid
+        //second level of the Pyramid
 
         xOrigin = 10 + (0.5 * blockSize);
         yOrigin = 502 - (2 * blockSize);
@@ -287,7 +287,7 @@ const drawPyramid = function() {
             xOrigin += blockSize;
         }
 
-        //third level of Pyramid
+        //third level of the Pyramid
 
         xOrigin = 10 + blockSize;
         yOrigin = 502 - (3 * blockSize);
@@ -298,7 +298,7 @@ const drawPyramid = function() {
             xOrigin += blockSize;
         }
 
-        //fourth level of Pyramid
+        //fourth level of the Pyramid
 
         xOrigin = 10 + (1.5 * blockSize);
         yOrigin = 502 - (4 * blockSize);
@@ -309,7 +309,7 @@ const drawPyramid = function() {
             xOrigin += blockSize;
         }
 
-        //fifth (top) level of pyramid
+        //fifth level (top) of the Pyramid
 
         xOrigin = 10 + (2 * blockSize);
         yOrigin = 502 - (5 * blockSize);
