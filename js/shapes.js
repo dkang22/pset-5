@@ -87,19 +87,17 @@ const drawColoredRectangle = function() {
     do {
         var color = prompt("Color: ");
 
-        if (color === null) {
-            break;
-        }
-
-        if (color === "") {
-            alert(" is not a supported color.");
-        }
-
         var colorString = String(color);
         var colorCaseUnsensitive = colorString.toLowerCase();
 
-        if (colorCaseUnsensitive !== "black" && colorCaseUnsensitive !== "blue" && colorCaseUnsensitive !== "green" && colorCaseUnsensitive !== "orange" && colorCaseUnsensitive !== "purple" && colorCaseUnsensitive !== "red" && colorCaseUnsensitive !== "yellow" ) {
+        if (color === null) {
+            break;
+        } else if (color === "") {
+            alert(" is not a supported color.");
+        } else if (colorCaseUnsensitive !== "black" && colorCaseUnsensitive !== "blue" && colorCaseUnsensitive !== "green" && colorCaseUnsensitive !== "orange" && colorCaseUnsensitive !== "purple" && colorCaseUnsensitive !== "red" && colorCaseUnsensitive !== "yellow" ) {
             alert(colorCaseUnsensitive + " is not a supported color.");
+        } else {
+            //intentially empty
         }
     } while (colorCaseUnsensitive !== "black" && colorCaseUnsensitive !== "blue" && colorCaseUnsensitive !== "green" && colorCaseUnsensitive !== "orange" && colorCaseUnsensitive !== "purple" && colorCaseUnsensitive !== "red" && colorCaseUnsensitive !== "yellow" && color !== null);
 
