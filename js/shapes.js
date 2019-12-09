@@ -149,28 +149,24 @@ const drawTriangle = function() {
         var side1 = prompt("Side 1: ");
         var side2 = prompt("Side 2: ");
         var side3 = prompt("Side 3: ");
+        var height = Math.min(side1, side2, side3);
+        var hypotenuse = Math.max(side1, side2, side3);
+        var base = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(height, 2));
 
         if (side3 === null) {
             break;
-        }
-
-        if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
+        } else if (height == 0 || base == 0 || hypotenuse == 0) {
+            alert("Your side lengths must be greater than or equal to 1.");
+        } else if (height > 487 || base > 999) {
+            alert("Your triangle won't fit on the canvas.")
+        } else if (isNaN(side1) || isNaN(side2) || isNaN(side3)) {
             alert("One of your sides is not a number.");
         } else if (Math.hypot(side1, side2) != side3 && Math.hypot(side2, side3) != side1 && Math.hypot(side1, side3) != side2) {
             alert("That's not a valid right triangle.");
         } else {
             //intentially empty
         }
-
-        var height = Math.min(side1, side2, side3);
-        var hypotenuse = Math.max(side1, side2, side3);
-        var base = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(height, 2));
-
-        if (height > 487 || base > 999) {
-            alert("Your triangle won't fit on the canvas.")
-        }
-
-    } while (isNaN(side1) || isNaN(side2) || isNaN(side3) || (Math.hypot(side1, side2) != side3 && Math.hypot(side2, side3) != side1 && Math.hypot(side1, side3) != side2) || height > 512 || base > 1024);
+    } while (height == 0 || base == 0 || hypotenuse == 0 || isNaN(side1) || isNaN(side2) || isNaN(side3) || (Math.hypot(side1, side2) != side3 && Math.hypot(side2, side3) != side1 && Math.hypot(side1, side3) != side2) || height > 512 || base > 1024);
 
     if (side3 === null) {
         context.clearRect(0, 0, canvas.width, canvas.height);
