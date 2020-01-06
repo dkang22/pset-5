@@ -19,17 +19,23 @@ const sayHello = function() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    let message = prompt("Message: ");
-    let messageLength = message.length;
+    do {
+        var message = prompt("Message: ");
+        if (message === null) {
+            break;
+        } else if (message.length > 50) {
+            alert("Your message is too long. Keep it under 50 characters.");
+        } else {
+            
+        }
+    } while(message.length > 50);
 
-    while (messageLength > 50) {
-        alert("Your message is too long. Keep it under 50 characters.");
-        message = prompt("Message: ");
-        messageLength = message.length;
+    if (message === null) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+        context.font = "48px sans-serif";
+        context.strokeText(message, 30, 70, 994);
     }
-
-    context.font = "48px sans-serif";
-    context.strokeText(message, 30, 70, 994);
 };
 
 const drawRectangle = function() {
